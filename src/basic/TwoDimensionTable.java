@@ -1,3 +1,5 @@
+package basic;
+
 public class TwoDimensionTable {
 
     private int[][] table;
