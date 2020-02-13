@@ -23,6 +23,32 @@ public class FindDuplicateNum {
       */
 
     /**
+     *  Simple implementation
+     *  O(n^2)
+     * */
+    public static int findDuplicate(int[] nums) {
+
+        Integer res = null;
+
+        for (int locIdx = 0; locIdx < nums.length; locIdx++) {
+            for (int locIdxInner = 0; locIdxInner < nums.length; locIdxInner++) {
+                if (locIdx != locIdxInner && nums[locIdxInner] == nums[locIdx]) {
+                    res = nums[locIdxInner];
+                    break;
+                }
+            }
+            if (null != res) {
+                break;
+            }
+        }
+
+        if (null == res) {
+            return Integer.MAX_VALUE;
+        }
+        return res;
+    }
+
+    /**
      * n + 1
      * 1 ~ n
      * Switch
