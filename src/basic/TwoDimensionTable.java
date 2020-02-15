@@ -1,6 +1,6 @@
 package basic;
 
-public class TwoDimensionTable {
+class TwoDimensionTable {
 
     private int[][] table;
     private int lineNumber;

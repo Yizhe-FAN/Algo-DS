@@ -1,7 +1,7 @@
 package algo;
 
 
-public class FindDuplicateNum {
+class FindDuplicateNum {
 
     /*
       Require
@@ -26,7 +26,7 @@ public class FindDuplicateNum {
      *  Simple implementation
      *  O(n^2)
      * */
-    public static int findDuplicate(int[] nums) {
+    public int findDuplicateRaw(int[] nums) {
 
         Integer res = null;
 

@@ -1,3 +1,5 @@
+package algo;
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -6,7 +8,7 @@
  *     ListNode(int x) { val = x; }
  * }
  */
-class Solution {
+class AddTwoNumbers {
     
     int promo = 0;
     
@@ -46,4 +48,10 @@ class Solution {
             }
         }
     }
+
+    public class ListNode {
+       int val;
+       ListNode next;
+       ListNode(int x) { val = x; }
+   }
 }
