@@ -1,14 +1,8 @@
 package algo;
 
-import javafx.util.Pair;
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
+import java.util.Map.Entry;
 
 class BiTreeLevelTraversal {
 
@@ -22,39 +16,39 @@ class BiTreeLevelTraversal {
   public List<List<Integer>> levelOrder(TreeNode root) {
 
     // Queue BFS
-    final Queue<Pair<Integer,TreeNode>> locQueue = new LinkedList<>();
-    final Map<Integer, List<Integer>> locListMap = new LinkedHashMap();
+    final Queue<AbstractMap.SimpleEntry<Integer,TreeNode>> locQueue = new LinkedList<>();
+    final Map<Integer, List<Integer>> locListMap = new LinkedHashMap<>();
 
     // Init root
     if (root != null) {
-      locQueue.add(new Pair<>(0, root));
+      locQueue.add(new AbstractMap.SimpleEntry<>(0, root));
     }
 
     // Traversal
     while (!locQueue.isEmpty()) {
-      Pair<Integer, TreeNode> locPair = locQueue.poll();
-      Integer locHeigh = locPair.getKey();
+      final AbstractMap.SimpleEntry<Integer, TreeNode> locPair = locQueue.poll();
+      Integer locHeight = locPair.getKey();
       TreeNode locNode = locPair.getValue();
       if (null != locNode.left) {
-        locQueue.add(new Pair(locHeigh + 1, locNode.left));
+        locQueue.add(new AbstractMap.SimpleEntry<>(locHeight + 1, locNode.left));
       }
       if (null != locNode.right) {
-        locQueue.add(new Pair(locHeigh + 1, locNode.right));
+        locQueue.add(new AbstractMap.SimpleEntry<>(locHeight + 1, locNode.right));
       }
 
-      List<Integer> locList = locListMap.get(locHeigh);
+      List<Integer> locList = locListMap.get(locHeight);
       if (null == locList) {
-        locList = new ArrayList();
+        locList = new ArrayList<>();
         locList.add(locNode.val);
-        locListMap.put(locHeigh, locList);
+        locListMap.put(locHeight, locList);
       } else {
         locList.add(locNode.val);
       }
     }
 
     // Construct list return
-    final List<List<Integer>> locTotalList = new ArrayList();
-    for(Map.Entry<Integer, List<Integer>> locEntry : locListMap.entrySet()) {
+    final List<List<Integer>> locTotalList = new ArrayList<>();
+    for(Entry<Integer, List<Integer>> locEntry : locListMap.entrySet()) {
       locTotalList.add(locEntry.getValue());
     }
     return locTotalList;
@@ -109,12 +103,13 @@ class BiTreeLevelTraversal {
       return "[]";
     }
 
-    String result = "";
-    for(int index = 0; index < length; index++) {
+      final StringBuilder resultBuilder = new StringBuilder();
+      for(int index = 0; index < length; index++) {
       Integer number = nums.get(index);
-      result += Integer.toString(number) + ", ";
+      resultBuilder.append(number).append(", ");
     }
-    return "[" + result.substring(0, result.length() - 2) + "]";
+      String result = resultBuilder.toString();
+      return "[" + result.substring(0, result.length() - 2) + "]";
   }
 
   public static String integerArrayListToString(List<Integer> nums) {

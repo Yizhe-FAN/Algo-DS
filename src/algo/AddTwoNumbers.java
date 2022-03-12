@@ -24,7 +24,7 @@ class AddTwoNumbers {
         } else if (l1.next == null && l2.next != null){
             copyRestToList (l2.next, res, promo);
             return res;
-        } else if (l2.next == null && l1.next != null){
+        } else if (l1.next != null){
             copyRestToList (l1.next, res, promo);
             return res;
         } else {
